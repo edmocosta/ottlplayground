@@ -906,6 +906,15 @@ class rt extends x{constructor(){super(...arguments),this.renderOptions={host:th
     background-color: #fff;
     z-index: 99;
   }
+
+  .beta-box {
+    font-size: 10px !important;
+    font-weight: 300 !important;
+    color: gray;
+    border: gray solid 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
 `,qv=[at,Fv];class Xv extends rt{static properties={title:{type:String},config:{type:String},payload:{type:String},evaluator:{type:String},hideEvaluators:{type:Boolean,attribute:"hide-evaluators"},hideRunButton:{type:Boolean,attribute:"hide-run-button"},disableShareLink:{type:Boolean,attribute:"disable-share-link"},baseUrl:{type:String,attribute:"base-url"},_loading:{state:!0},_loadingWasm:{state:!0},_evaluators:{state:!0},_evaluatorsDocsURL:{state:!0},_result:{state:!0}};constructor(){super(),this._initDefaultValues(),this._addEventListeners()}_initDefaultValues(){this._loading=!0,this.evaluator="transform_processor",this._hideEvaluators=!1,this.hideRunButton=!1,this.disableShareLink=!1,this.title="OTTL Playground",this.payload="{}",this.baseUrl=""}static get styles(){return qv}get state(){return{config:this.config,payload:this.payload,evaluator:this.evaluator}}set state(t){this.evaluator=t.evaluator,this.payload=t.payload,this.config=t.config,this._setSelectedPayloadExample("")}firstUpdated(){this._spitComponents(),this._loading=!1,this._fetchWebAssembly(),this._loadURLBase64DataHash()}willUpdate(t){t.has("_evaluators")&&this._computeEvaluatorsDocsURL(),super.willUpdate(t)}_loadURLBase64DataHash(){if(!0===this.disableShareLink)return;let t=window.top.location.hash?.substring(1);if(t)try{let e=JSON.parse(function(t){const e=atob(t),i=e.length,n=new Uint8Array(i);for(let t=0;t<i;t++)n[t]=e.charCodeAt(t);return(new TextDecoder).decode(n)}(t));if(e.payload)try{e.payload=JSON.stringify(JSON.parse(e.payload),null,2)}catch(t){}this.state={config:e?.config,evaluator:e?.evaluator,payload:e?.payload}}catch(t){}}_setSelectedPayloadExample(t){let e=this.shadowRoot.querySelector("#payload-code-panel");e&&(e.selectedExample=t)}_computeEvaluatorsDocsURL(){let t={};this._evaluators?.forEach((e=>{t[e.id]=e.docsURL??null})),this._evaluatorsDocsURL=t}render(){return Q`
       ${this._loading?Q`
             <div id="loading">
@@ -929,7 +938,11 @@ class rt extends x{constructor(){super(...arguments),this.renderOptions={host:th
               name="playground-controls-app-title-text"
               slot="app-title-text"
             >
-              ${this.title}
+              ${this.title}&nbsp;<sup
+                class="beta-box"
+                title="The OTTL Playground is still in beta and the authors of this tool would welcome your feedback"
+                >BETA</sup
+              >
             </slot>
             <slot
               name="playground-controls-custom-components"
