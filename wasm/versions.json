@@ -7,6 +7,14 @@
     {
       "artifact": "wasm/ottlplayground-v0.113.0.wasm",
       "version": "v0.113.0"
+    },
+    {
+      "artifact": "wasm/ottlplayground-v0.112.0.wasm",
+      "version": "v0.112.0"
+    },
+    {
+      "artifact": "wasm/ottlplayground-v0.111.0.wasm",
+      "version": "v0.111.0"
     }
   ]
 }
